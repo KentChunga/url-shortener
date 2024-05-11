@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const Text = () => {
   return (
-    <div className="lg:w-[566px] relative text-center lg:text-left">
+    <div className="lg:w-[566px] w-full mx-auto lg:mx-0 relative text-center lg:text-left">
       <h1 className="text-veryDarkViolet font-bold text-6xl mb-5">
         More than just shorter links
       </h1>
