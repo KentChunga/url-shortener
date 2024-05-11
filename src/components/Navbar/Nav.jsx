@@ -13,7 +13,7 @@ const Nav = () => {
   };
 
   return (
-    <nav className="flex items-center relative justify-between w-[90%] lg:w-[1100px] mx-auto">
+    <nav className="flex h-full items-center relative justify-between w-[90%] lg:w-[1100px] mx-auto">
       <div className="flex items-center">
         <Link to={"/"}>
           <img src={ShortlyLogo} alt="Shortly company logo" />
