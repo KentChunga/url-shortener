@@ -1,12 +1,12 @@
-import { Outlet } from 'react-router-dom';
-import Header from '../components/Navbar/Header';
-import Footer from '../components/Footer/Footer';
+import { Outlet } from "react-router-dom";
+import Header from "../components/Navbar/Header";
+import Footer from "../components/Footer/Footer";
 
 const Layout = () => {
   return (
     <>
       <Header />
-      <main className="w-full lg:w-[80%] mx-auto mt-12">
+      <main className="relative mt-12">
         <Outlet />
       </main>
       <Footer />
