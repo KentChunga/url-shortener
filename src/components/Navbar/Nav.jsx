@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { FaBars } from "react-icons/fa6";
-import ShortlyLogo from "../../../public/images/logo.svg";
+import ShortlyLogo from "/images/logo.svg";
 import List from "./List";
 import CTA from "./Cta";
 import { useState } from "react";
@@ -13,7 +13,7 @@ const Nav = () => {
   };
 
   return (
-    <nav className="flex h-full items-center relative justify-between w-[90%] lg:w-[1100px] mx-auto">
+    <nav className="relative mx-auto flex h-full w-[90%] items-center justify-between lg:w-[1100px]">
       <div className="flex items-center">
         <Link to={"/"}>
           <img src={ShortlyLogo} alt="Shortly company logo" />
@@ -25,7 +25,7 @@ const Nav = () => {
         <CTA />
       </div>
       <FaBars
-        className="w-8 h-6 lg:hidden cursor-pointer"
+        className="h-6 w-8 cursor-pointer lg:hidden"
         onClick={toggleMobileMenu}
       />
     </nav>

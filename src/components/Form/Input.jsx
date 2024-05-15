@@ -10,7 +10,7 @@ const Input = ({ handleChange }) => {
         name="url"
         onChange={handleChange}
         placeholder="Shorten a link here..."
-        className="input w-full rounded-md"
+        className="input h-14 w-full rounded-md px-4  py-[12px]"
       />
     </label>
   );

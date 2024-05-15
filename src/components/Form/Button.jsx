@@ -1,11 +1,10 @@
 /* eslint-disable react/prop-types */
 
-const Button = ({ handleClick }) => {
+const Button = () => {
   return (
     <button
-      onClick={handleClick}
       type="submit"
-      className="w-full rounded-md bg-cyan px-9 py-[9px] text-center font-medium text-white lg:w-1/4"
+      className="btn  h-14 w-full rounded-md border-0 bg-cyan px-9 py-[16px] text-center text-lg font-bold text-white hover:bg-cyan lg:w-1/4"
     >
       Shorten It!
     </button>
