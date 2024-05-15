@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "https://cleanuri.com",
+        target: import.meta.env.VITE_API_URL,
         changeOrigin: true,
       },
     },

@@ -1,6 +1,5 @@
 import axios from "axios";
-
-const BASE_URL = "https://cleanuri.com";
+const BASE_URL = import.meta.env.VITE_API_URL;
 
 export default axios.create({
   baseURL: BASE_URL,
@@ -8,5 +7,4 @@ export default axios.create({
     "Content-Type": "application/json",
     "Access-Control-Allow-Origin": "*",
   },
-  withCredentials: true,
 });
