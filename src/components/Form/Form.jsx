@@ -7,7 +7,6 @@ import useUrls from "../../hooks/useUrls";
 const Form = () => {
   const [urls, setUrls] = useState({ url: "" });
   const [inputValue, setInputValue] = useState("");
-  const [cleanuri, setCleanuri] = useState(null);
   const [loading, setLoading] = useState(false);
 
   const [error, setError] = useState("");
@@ -24,12 +23,13 @@ const Form = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     const exists = shortUrls.find((url) => url.longurl === inputValue);
 
     if (exists) {
-      return setError(
-        "The URL has already been shortened, scroll down to copy it.",
-      );
+      setError("The URL has already been shortened, scroll down to copy it.");
+      setLoading(false);
+      return;
     }
 
     try {
@@ -37,7 +37,7 @@ const Form = () => {
 
       if (!response.error) {
         const { short_url } = response.data;
-        // setLoading(false);
+
         console.log(response.data);
         setCleanuri({ cleanuri: short_url });
         const savedUrls =
@@ -58,22 +58,24 @@ const Form = () => {
     } catch (error) {
       console.log(error);
       setError(error.response.data.message);
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <form
-      className={`absolute -top-[4.5rem] flex w-full  flex-col gap-4 overflow-hidden rounded-md bg-veryDarkViolet bg-[url('/images/bg-shorten-mobile.svg')] bg-cover bg-left bg-no-repeat  p-5 lg:flex-row lg:bg-[url('/images/bg-shorten-desktop.svg')] lg:px-16  ${error ? "mb-8 pt-8 lg:pb-6" : "lg:py-12"}`}
-      onSubmit={handleSubmit}
+    <div
+      className={`absolute -top-[4.5rem] flex w-full  flex-col gap-4 overflow-hidden rounded-md bg-veryDarkViolet bg-[url('/images/bg-shorten-mobile.svg')] bg-cover bg-left bg-no-repeat  p-5  lg:bg-[url('/images/bg-shorten-desktop.svg')] lg:px-16  ${error || loading ? "mb-8 pt-8 lg:pb-6" : "lg:py-12"}`}
     >
-      {/* {cleanuri ? (
-        ""
-      ) : (
-        <div className="font-bold text-cyan">Shortening....</div>
-      )} */}
-      <Input handleChange={handleChange} value={inputValue} error={error} />
-      <Button />
-    </form>
+      <form
+        className={`flex flex-col gap-4 lg:flex-row `}
+        onSubmit={handleSubmit}
+      >
+        <Input handleChange={handleChange} value={inputValue} error={error} />
+        <Button />
+      </form>
+      {loading && <div className="font-bold text-cyan">Shortening....</div>}
+    </div>
   );
 };
 
