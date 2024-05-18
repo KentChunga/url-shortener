@@ -4,9 +4,9 @@ import {
   createRoutesFromElements,
   RouterProvider,
 } from "react-router-dom";
-
 import Layout from "./layouts/Layout";
 import Home from "./pages/Home";
+import { UrlContextProvider } from "./contexts/UrlContext";
 
 function App() {
   const router = createBrowserRouter(
@@ -17,9 +17,9 @@ function App() {
     ),
   );
   return (
-    <>
+    <UrlContextProvider>
       <RouterProvider router={router} />
-    </>
+    </UrlContextProvider>
   );
 }
 
