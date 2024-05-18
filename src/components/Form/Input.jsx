@@ -14,11 +14,6 @@ const Input = ({ handleChange, value, error }) => {
         placeholder="Shorten a link here..."
         className={`input h-14 w-full rounded-md px-4  py-[12px] ${error ? "border-2 border-red placeholder:text-red" : ""}`}
       />
-      {error && (
-        <span className="mt-2 text-red transition-all duration-300 ease-in-out">
-          {error}
-        </span>
-      )}
     </label>
   );
 };

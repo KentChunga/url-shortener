@@ -8,7 +8,6 @@ const Form = () => {
   const [urls, setUrls] = useState({ url: "" });
   const [inputValue, setInputValue] = useState("");
   const [loading, setLoading] = useState(false);
-
   const [error, setError] = useState("");
   const { shortUrls, setShortUrls } = useUrls();
 
@@ -39,7 +38,7 @@ const Form = () => {
         const { short_url } = response.data;
 
         console.log(response.data);
-        setCleanuri({ cleanuri: short_url });
+
         const savedUrls =
           JSON.parse(localStorage.getItem("shortly-urls")) || [];
         savedUrls.push({
@@ -56,16 +55,17 @@ const Form = () => {
         setError("");
       }
     } catch (error) {
-      console.log(error);
+      console.log(error.response.data.message);
       setError(error.response.data.message);
     } finally {
       setLoading(false);
+      // setError("");
     }
   };
 
   return (
     <div
-      className={`absolute -top-[4.5rem] flex w-full  flex-col gap-4 overflow-hidden rounded-md bg-veryDarkViolet bg-[url('/images/bg-shorten-mobile.svg')] bg-cover bg-left bg-no-repeat  p-5  lg:bg-[url('/images/bg-shorten-desktop.svg')] lg:px-16  ${error || loading ? "mb-8 pt-8 lg:pb-6" : "lg:py-12"}`}
+      className={`absolute -top-[4.5rem] flex w-full  flex-col gap-4 overflow-hidden rounded-md bg-veryDarkViolet bg-[url('/images/bg-shorten-mobile.svg')] bg-cover bg-left bg-no-repeat  p-5  lg:bg-[url('/images/bg-shorten-desktop.svg')] lg:px-16  ${error || loading ? "mb-12 pt-8 lg:pb-6" : "lg:py-12"}`}
     >
       <form
         className={`flex flex-col gap-4 lg:flex-row `}
@@ -74,7 +74,13 @@ const Form = () => {
         <Input handleChange={handleChange} value={inputValue} error={error} />
         <Button />
       </form>
+
       {loading && <div className="font-bold text-cyan">Shortening....</div>}
+      {error && (
+        <span className="mt-2 text-red transition-all duration-300 ease-in-out">
+          {error}
+        </span>
+      )}
     </div>
   );
 };
